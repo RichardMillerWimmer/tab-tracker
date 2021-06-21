@@ -5,7 +5,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const {sequelize} = require('./models');
 
-const authCtrl = require('../server/controllers/AuthController')
+const authCtrl = require('../server/controllers/AuthController');
+const authPolicy = require('../server/policies/AuthenticationPolicy');
 
 const app = express();
 app.use(morgan('combined'));
@@ -17,7 +18,7 @@ const {SERVER_PORT} = process.env;
 // Endpoint Routes 
 
 //Auth Controller
-app.post('/register', authCtrl.register);
+app.post('/register', authPolicy.register, authCtrl.register);
 
 sequelize.sync()
 .then(() => {
