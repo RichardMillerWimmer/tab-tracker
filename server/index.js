@@ -3,6 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const {sequelize} = require('./models');
+
+const authCtrl = require('../server/controllers/AuthController')
 
 const app = express();
 app.use(morgan('combined'));
@@ -11,10 +14,13 @@ app.use(cors());
 
 const {SERVER_PORT} = process.env;
 
-app.post('/register', (req, res) => {
-    res.send({
-        message: 'Your user was registered!'
-    })
-})
+// Endpoint Routes 
 
-app.listen(SERVER_PORT, () => console.log(`server listening on ${SERVER_PORT}`));
+//Auth Controller
+app.post('/register', authCtrl.register);
+
+sequelize.sync()
+.then(() => {
+    app.listen(SERVER_PORT, () => console.log(`sequelize connected and server listening on ${SERVER_PORT}`))
+
+})
