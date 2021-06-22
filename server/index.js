@@ -18,7 +18,7 @@ const { SERVER_PORT } = process.env;
 // Endpoint Routes 
 
 //Auth Controller
-app.post('/auth/register', authCtrl.register);
+app.post('/auth/register', authPolicy.register, authCtrl.register);
 
 sequelize.sync()
     .then(() => {
