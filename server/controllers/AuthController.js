@@ -26,6 +26,7 @@ module.exports = {
     async login(req, res) {
         // console.log(req.body)
         const {email, password} = req.body;
+        console.log(email, password)
         try {
             const user = await User.findOne({
                 where: {
@@ -38,6 +39,7 @@ module.exports = {
                 })
             }
             const isPasswordValid = await user.comparePassword(password)
+            console.log('compareAuth hit')
             if(!isPasswordValid) {
                 return res.status(403).send({
                     error: 'The login information was incorrect.'
