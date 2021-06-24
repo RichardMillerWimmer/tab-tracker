@@ -1,17 +1,19 @@
 <template>
   <div>
     <h2>Register</h2>
-    <input v-model="email" type="text" name="email" placeholder="email" />
-    <br />
-    <input
-      v-model="password"
-      type="password"
-      name="password"
-      placeholder="password"
-    />
-    <br />
-    <div v-html="error"></div>
-    <button @click="register">Register</button>
+    <form action="">
+      <input v-model="email" type="text" name="email" placeholder="email" />
+      <br />
+      <input
+        v-model="password"
+        type="password"
+        name="password"
+        placeholder="password"
+      />
+      <br />
+      <div v-html="error"></div>
+      <button @click="register">Register</button>
+    </form>
   </div>
 </template>
 
