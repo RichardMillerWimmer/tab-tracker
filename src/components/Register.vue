@@ -27,13 +27,14 @@ export default {
     };
   },
   methods: {
-    async login() {
+    async register() {
       try {
+        // console.log('vue register hit')
         const response = await AuthenticationService.register({
           email: this.email,
           password: this.password,
         });
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         this.error = error.response.data.error;
       }
